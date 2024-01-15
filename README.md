@@ -1,1 +1,1 @@
-# device-friendly-private-gan
+# Device-Friendly Privacy-Preserving Generative Adversarial Networks
