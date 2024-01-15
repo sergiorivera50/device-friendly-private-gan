@@ -163,14 +163,13 @@ if __name__ == "__main__":
         generator=generator,
     )
 
-    scaler_list = []
+    channels = []
     for m in generator.modules():
         if isinstance(m, torch.nn.GroupNorm) and m.weight is not None:
             m_cpu = m.weight.data.cpu().numpy().squeeze()
-            # print('m_cpu:', type(m_cpu), m_cpu.shape)
-            scaler_list.append(m_cpu)
-    all_scaler = np.concatenate(scaler_list, axis=0)
-    l0norm = np.sum(all_scaler != 0)
+            channels.append(m_cpu)
+    channels = np.concatenate(channels, axis=0)
+    l0norm = np.sum(channels != 0)
     channel_number.append(l0norm)
     print(f"Initial non-zero channels: {l0norm}")
 
